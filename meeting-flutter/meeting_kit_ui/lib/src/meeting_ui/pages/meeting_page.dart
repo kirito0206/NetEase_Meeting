@@ -66,6 +66,7 @@ class MeetingBusinessUiState extends LifecycleBaseState<MeetingPage>
       _networkInfo;
 
   late ValueNotifier<bool> _isGalleryLayout;
+
   ValueListenable<bool> get isGalleryLayout => _isGalleryLayout;
 
   bool _isShowOpenMicroDialog = false,
@@ -257,7 +258,15 @@ class MeetingBusinessUiState extends LifecycleBaseState<MeetingPage>
         .notifyStatusChange(NEMeetingStatus(NEMeetingEvent.connecting));
     setupAudioProfile();
     setupMeetingEndTip();
-    permissionCheckBeforeJoin().then((value) {
+    permissionCheckBeforeJoin().then((value) async {
+      /// 媒体流加密
+      final encryptionConfig = arguments.encryptionConfig;
+      if (encryptionConfig != null) {
+        commonLogger.i('encryptionConfig: ${encryptionConfig.encryptionMode}');
+        await roomContext.rtcController.enableEncryption(
+            encryptionKey: encryptionConfig.encryptKey,
+            encryptionMode: encryptionConfig.encryptionMode);
+      }
       roomContext.rtcController.joinRtcChannel().then((value) {
         if (mounted && !value.isSuccess()) {
           commonLogger.i('join channel error: ${value.code} ${value.msg}');
@@ -385,6 +394,7 @@ class MeetingBusinessUiState extends LifecycleBaseState<MeetingPage>
   }
 
   static const _updateMyPhoneState = 'UpdateMyPhoneState';
+
   void handlePhoneStateChangeEvent() {
     NEMeetingPlugin().phoneStateService.start();
     var subscription = NEMeetingPlugin()
@@ -2552,6 +2562,7 @@ class MeetingBusinessUiState extends LifecycleBaseState<MeetingPage>
   }
 
   bool modifyingAudioShareState = false;
+
   void enableAudioShare(bool enable) async {
     // 需要先申请权限
     if (enable) {
@@ -2825,6 +2836,7 @@ class MeetingBusinessUiState extends LifecycleBaseState<MeetingPage>
   }
 
   bool isBeautyEnabled = false;
+
   Future<dynamic> _initBeauty() async {
     if (!isBeautyFuncSupported) return;
     var result = await roomContext.rtcController.startBeauty();

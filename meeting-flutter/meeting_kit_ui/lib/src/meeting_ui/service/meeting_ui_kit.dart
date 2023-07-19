@@ -235,6 +235,7 @@ class NEMeetingUIKit with _AloggerMixin, WidgetsBindingObserver {
           roomContext: roomContext,
           meetingInfo: roomContext.meetingInfo,
           options: opts,
+          encryptionConfig: param.encryptionConfig,
         );
         final popped = navigatorState.push(
           MaterialPageRoute(
@@ -361,9 +362,11 @@ class NEMeetingUIKit with _AloggerMixin, WidgetsBindingObserver {
         await onMeetingPageRouteWillPush();
       }
       final meetingArguments = MeetingArguments(
-          roomContext: roomContext,
-          meetingInfo: roomContext.meetingInfo,
-          options: uiOpts);
+        roomContext: roomContext,
+        meetingInfo: roomContext.meetingInfo,
+        options: uiOpts,
+        encryptionConfig: param.encryptionConfig,
+      );
       final popped = navigatorState.push(MaterialPageRoute(
           builder: (context) => MeetingPageProxy(meetingArguments)));
       onMeetingPageRouteDidPush?.call(popped);
@@ -391,6 +394,7 @@ class NEMeetingUIKit with _AloggerMixin, WidgetsBindingObserver {
             roomContext: value,
             meetingInfo: value.meetingInfo,
             options: uiOpts,
+            encryptionConfig: param.encryptionConfig,
           );
           final popped = navigatorState.push(MaterialPageRoute(
             builder: (context) => MeetingPageProxy(meetingArguments),
@@ -557,6 +561,7 @@ class NEStartMeetingUIParams extends NEStartMeetingParams {
     String? extraData,
     List<NERoomControl>? controls,
     Map<String, NEMeetingRoleType>? roleBinds,
+    NEEncryptionConfig? encryptionConfig,
   }) : super(
           displayName: displayName,
           subject: subject,
@@ -567,6 +572,7 @@ class NEStartMeetingUIParams extends NEStartMeetingParams {
           extraData: extraData,
           controls: controls,
           roleBinds: roleBinds,
+          encryptionConfig: encryptionConfig,
         );
 
   NEStartMeetingUIParams.fromMap(Map map)
@@ -587,6 +593,10 @@ class NEStartMeetingUIParams extends NEStartMeetingParams {
             var roleType = MeetingRoles.mapIntRoleToEnum(value);
             return MapEntry(key, roleType);
           }),
+          encryptionConfig: map['encryptionConfig'] == null
+              ? null
+              : NEEncryptionConfig.fromJson(
+                  Map<String, dynamic>.from(map['encryptionConfig'] as Map)),
         );
 }
 
@@ -597,12 +607,14 @@ class NEJoinMeetingUIParams extends NEJoinMeetingParams {
     String? password,
     String? tag,
     String? avatar,
+    NEEncryptionConfig? encryptionConfig,
   }) : super(
           meetingNum: meetingNum,
           displayName: displayName,
           password: password,
           tag: tag,
           avatar: avatar,
+          encryptionConfig: encryptionConfig,
         );
 
   NEJoinMeetingUIParams.fromMap(Map map)
@@ -612,6 +624,10 @@ class NEJoinMeetingUIParams extends NEJoinMeetingParams {
           password: map['password'] as String?,
           tag: map['tag'] as String?,
           avatar: map['avatar'] as String?,
+          encryptionConfig: map['encryptionConfig'] == null
+              ? null
+              : NEEncryptionConfig.fromJson(
+                  Map<String, dynamic>.from(map['encryptionConfig'] as Map)),
         );
 }
 
