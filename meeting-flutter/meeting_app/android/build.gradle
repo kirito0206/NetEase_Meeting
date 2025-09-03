@@ -16,6 +16,22 @@ buildscript {
     }
 }
 
+// Problem is about namespace. Earlier versions of gradle,
+// they removed namespace from AndroidManifest.xml and transfer to gradle file.
+// Even your project's namespace is transferred to new system,
+// some flutter plugins may not be updated to recent gradle versions.
+subprojects {
+    afterEvaluate { project ->
+        if (project.hasProperty('android')) {
+            project.android {
+                if (namespace == null) {
+                    namespace project.group
+                }
+            }
+        }
+    }
+}
+
 allprojects {
     repositories {
         mavenCentral()

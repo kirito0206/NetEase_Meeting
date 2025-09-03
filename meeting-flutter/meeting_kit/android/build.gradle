@@ -6,7 +6,7 @@ group 'com.netease.meeting.plugin.meeting_plugin'
 version '1.0'
 
 buildscript {
-    ext.kotlin_version = '1.6.10'
+    ext.kotlin_version = '1.9.22'
     repositories {
         google()
         mavenCentral()
@@ -27,6 +27,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
+    namespace 'com.netease.meeting.plugin'
     compileSdkVersion 31
 
     defaultConfig {
@@ -38,6 +39,15 @@ android {
 
     sourceSets {
         main.java.srcDirs += 'src/main/audioManagerKit'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 }
 
