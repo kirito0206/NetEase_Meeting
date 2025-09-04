@@ -22,7 +22,6 @@ import 'package:nemeeting/routes/home_page.dart';
 import 'package:nemeeting/routes/network_not_available_page.dart';
 import 'package:nemeeting/setting/account_and_safety_setting.dart';
 import 'package:nemeeting/setting/avatar_setting.dart';
-import 'package:nemeeting/routes/qr_scan_page.dart';
 import 'package:nemeeting/setting/captions_setting.dart';
 import 'package:netease_meeting_kit/meeting_ui.dart';
 import '../setting/language_setting.dart';
@@ -55,7 +54,6 @@ class RoutesRegister {
     RouterName.accountAndSafety: (context) => AccountAndSafetySettingRoute(),
     RouterName.modifyPassword: (context) => ModifyPasswordRoute(),
     RouterName.webview: (context) => WebViewPage(),
-    RouterName.qrScan: (context) => QrScanPage(),
     RouterName.languageSetting: (context) => LanguageSetting(),
     RouterName.captionsSetting: (context) => CaptionsSetting(),
     RouterName.transcriptionTiming: (context) => TranscriptionTimingPage(),

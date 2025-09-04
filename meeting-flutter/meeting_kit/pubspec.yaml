@@ -27,32 +27,35 @@ dependencies:
   shared_preferences: ^2.2.3
   characters: ^1.3.0
   convert: ^3.1.1
-  flutter_inappwebview: ^6.0.0
+  flutter_inappwebview: ^6.1.5
   provider: ^6.1.2
   image_size_getter: ^2.1.3
   cached_network_image: ^3.3.1
-  open_filex: #^4.4.0
+  open_file:
     git:
-      url: https://github.com/kirito0206/open_filex.git
+      url: https://github.com/kirito0206/open_file.git
+      path: ./open_file
+      ref: master
   scrollable_positioned_list: ^0.3.8
   file_picker: ^8.0.0+1
   mask_text_input_formatter: ^2.9.0
   audioplayers: ^6.0.0
-  vibration: ^1.9.0
-  flutter_slidable: ^3.1.0
-  flutter_timezone: ^1.0.8
+  vibration: ^2.0.1
+  flutter_slidable: ^3.1.2
+  flutter_timezone: ^4.1.1
   connectivity_plus: ^6.0.2
   async: ^2.11.0
   dio: ^5.4.2+1
   yunxin_alog: ^2.0.0
   flutter_screenutil: ^5.9.0
   archive: ^3.4.10
-  extended_text_field: ^15.0.0
-  extended_text: ^13.0.2
+  extended_text_field: ^16.0.2
+  extended_text: ^15.0.2
   sqflite: ^2.3.3
 
   netease_common: ^1.0.8
-  netease_roomkit: ^1.32.1
+  netease_roomkit: 1.32.1
+  netease_roomkit_interface: 1.32.1
 
 dev_dependencies:
   flutter_test:
