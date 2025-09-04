@@ -13,8 +13,6 @@ import 'meeting_app_localizations_en.dart';
 import 'meeting_app_localizations_ja.dart';
 import 'meeting_app_localizations_zh.dart';
 
-// ignore_for_file: type=lint
-
 /// Callers can lookup localized strings with an instance of MeetingAppLocalizations
 /// returned by `MeetingAppLocalizations.of(context)`.
 ///
