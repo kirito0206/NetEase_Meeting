@@ -91,6 +91,10 @@ meeting_kit/
 
 > 请确保 Flutter 版本为 3.22.2 及以上。
 
+### 仓库源
+
+⚠️注意如果您Flutter配置了国内镜像源，如 `https://pub.flutter-io.cn` 源，请修改meeting_app/pubspec.lock文件里的`url: "https://pub.dev"`修改为"`url: "https://pub.flutter-io.cn"`，否则会导致拉取最新的依赖，可能导致编译失败。
+
 ### 下载依赖
 
 在 `meeting-app` 根目录下执行以下命令安装依赖：
