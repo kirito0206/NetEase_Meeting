@@ -26,6 +26,15 @@ import '../uikit/const/consts.dart';
 import '../widget/meeting_text_field.dart';
 
 class MeetCreateRoute extends StatefulWidget {
+  final bool isTurnOnMyAudioWhenJoinMeetingEnabled;
+  final bool isTurnOnMyVideoWhenJoinMeetingEnabled;
+
+  const MeetCreateRoute({
+    super.key,
+    required this.isTurnOnMyAudioWhenJoinMeetingEnabled,
+    required this.isTurnOnMyVideoWhenJoinMeetingEnabled,
+  });
+
   @override
   State<StatefulWidget> createState() {
     return _MeetCreateRouteState();
@@ -58,13 +67,8 @@ class _MeetCreateRouteState extends AppBaseState<MeetCreateRoute> {
   void initState() {
     super.initState();
     AppConfig().init();
-    Future.wait([
-      settingsService.isTurnOnMyVideoWhenJoinMeetingEnabled(),
-      settingsService.isTurnOnMyAudioWhenJoinMeetingEnabled(),
-    ]).then((values) {
-      openCamera.value = values[0];
-      openMicrophone.value = values[1];
-    });
+    openCamera.value = widget.isTurnOnMyVideoWhenJoinMeetingEnabled;
+    openMicrophone.value = widget.isTurnOnMyAudioWhenJoinMeetingEnabled;
     passwordFocusNode.addListener(() {
       setState(() {});
     });

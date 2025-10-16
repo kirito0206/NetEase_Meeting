@@ -122,6 +122,22 @@ class NavUtils {
         rootNavigator: rootNavigator);
   }
 
+  static Future<void> toMeetingCreate(BuildContext context) async {
+    final settingsService = NEMeetingKit.instance.getSettingsService();
+    final isAudioOn =
+    await settingsService.isTurnOnMyAudioWhenJoinMeetingEnabled();
+    final isVideoOn =
+    await settingsService.isTurnOnMyVideoWhenJoinMeetingEnabled();
+    NavUtils.pushNamed(
+      context,
+      RouterName.meetCreate,
+      arguments: {
+        'isTurnOnMyAudioWhenJoinMeetingEnabled': isAudioOn,
+        'isTurnOnMyVideoWhenJoinMeetingEnabled': isVideoOn,
+      },
+    );
+  }
+
   static Future<void> toMeetingJoin(BuildContext context) async {
     final settingsService = NEMeetingKit.instance.getSettingsService();
     final isAudioOn =
