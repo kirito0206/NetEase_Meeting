@@ -214,7 +214,7 @@ class _EntranceRouteState extends PlatformAwareLifecycleBaseState
         mainAxisSize: MainAxisSize.min,
         children: [
           buildTextAction(getAppLocalizations().meetingJoin, () async {
-            NavUtils.pushNamed(context, RouterName.meetJoin);
+            NavUtils.toMeetingJoin(context);
           }),
           Container(
             color: AppColors.colorE6E7EB,

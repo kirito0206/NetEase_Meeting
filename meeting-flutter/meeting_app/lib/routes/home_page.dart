@@ -635,7 +635,7 @@ class _HomePageRouteState extends PlatformAwareLifecycleBaseState<HomePageRoute>
   }
 
   void _onJoinMeeting() {
-    NavUtils.pushNamed(context, RouterName.meetJoin);
+    NavUtils.toMeetingJoin(context);
   }
 
   void _onSetting() {

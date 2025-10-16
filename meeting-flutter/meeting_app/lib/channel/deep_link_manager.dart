@@ -236,8 +236,10 @@ class DeepLinkManager {
           return true;
         }
         GlobalState.deepLinkMeetingNum = meetingKey;
-        NavUtils.pushNamedAndRemoveUntil(_context!, RouterName.meetJoin,
-            utilRouteName: RouterName.entrance);
+        NavUtils.toMeetingJoinAndRemoveUntil(
+          _context!,
+          utilRouteName: RouterName.entrance,
+        );
         return true;
       }
       _pendingCheckRequest = request;
@@ -286,8 +288,10 @@ class DeepLinkManager {
           return true;
         }
         GlobalState.deepLinkMeetingNum = meetingNum;
-        NavUtils.pushNamedAndRemoveUntil(_context!, RouterName.meetJoin,
-            utilRouteName: RouterName.homePage);
+        NavUtils.toMeetingJoinAndRemoveUntil(
+          _context!,
+          utilRouteName: RouterName.entrance,
+        );
         _checkingMeetingKey = null;
         return true;
       }
