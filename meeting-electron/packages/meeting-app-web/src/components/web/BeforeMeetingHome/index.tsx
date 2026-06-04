@@ -831,20 +831,22 @@ const BeforeMeetingHome: React.FC<BeforeMeetingHomeProps> = ({ onLogout }) => {
     };
     // 判断是否有私有化配置文件
     let privateConfig: NEMeetingPrivateConfig | null = null;
+    let rawPrivateConfig: NEMeetingPrivateConfig | null = null;
 
     if (window.isElectronNative) {
       try {
-        privateConfig = await window.ipcRenderer?.invoke(
+        rawPrivateConfig = await window.ipcRenderer?.invoke(
           IPCEvent.getPrivateConfig,
         );
         privateConfig = parsePrivateConfig(
-          privateConfig as NEMeetingPrivateConfig,
+          rawPrivateConfig as NEMeetingPrivateConfig,
         );
       } catch (error) {
         console.log('getPrivateConfig error', error);
       }
     } else {
       privateConfig = PRIVATE_CONFIG as unknown as NEMeetingPrivateConfig;
+      rawPrivateConfig = privateConfig;
       console.log('privateConfig>>>', privateConfig);
     }
 
@@ -861,10 +863,24 @@ const BeforeMeetingHome: React.FC<BeforeMeetingHomeProps> = ({ onLogout }) => {
       nosAntiLeech: true,
       nosAntiLeechExpire: 7200,
     };
+    const serverConfig = privateConfig
+      ? {
+          imServerConfig: privateConfig.imPrivateConf,
+          rtcServerConfig: privateConfig.neRtcServerAddresses,
+          whiteboardServerConfig: privateConfig.whiteboardConfig,
+        }
+      : undefined;
 
     return MeetingKitInstance.initialize({
       appKey: config.appKey,
       serverUrl: config.meetingServerDomain,
+      useAssetServerConfig: window.isElectronNative && !!privateConfig,
+      serverConfig,
+      extras: {
+        serverConfigJsonString: rawPrivateConfig
+          ? JSON.stringify(rawPrivateConfig)
+          : '',
+      },
       width: 0,
       height: 0,
       whiteboardAppConfig,
