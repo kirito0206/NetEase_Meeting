@@ -576,14 +576,10 @@ export default class NEMeetingService {
       useInternalVideoRender: false,
       debug: params.debug,
       eventTracking: params.eventTracking,
-      extras: params.extras?.noReport
-        ? {
-            noReport: params.extras?.noReport,
-            framework: this._framework,
-          }
-        : {
-            framework: this._framework,
-          },
+      extras: {
+        ...params.extras,
+        framework: this._framework,
+      },
     }
 
     // 配置私有化优先级更高 > serverUrl
@@ -602,7 +598,7 @@ export default class NEMeetingService {
         rtcServerConfig: params.neRtcServerAddresses,
         whiteboardServerConfig: params.whiteboardConfig,
       }
-      // options.useAssetServerConfig = true
+      ;(options as any).useAssetServerConfig = !!params.useAssetServerConfig
     } else if (params.useAssetServerConfig) {
       // Electron读取配置文件
       try {

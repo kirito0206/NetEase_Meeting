@@ -880,6 +880,8 @@ export function parsePrivateConfig(privateConfig: NEMeetingPrivateConfig) {
   const imConfig = privateConfig.im
   const rtcConfig = privateConfig.rtc
   const whiteboardConfig = privateConfig.whiteboard
+  const meetingServerDomain =
+    privateConfig.meetingServerDomain || privateConfig.meeting?.serverUrl
   const im = {
     ...imConfig,
     handShakeType: imConfig?.hand_shake_type,
@@ -920,6 +922,7 @@ export function parsePrivateConfig(privateConfig: NEMeetingPrivateConfig) {
     fontDownloadServer: whiteboardConfig?.fontDownloadServer,
   }
   const options: {
+    meetingServerDomain?: string
     imPrivateConf: typeof im
     neRtcServerAddresses: typeof rtc
     whiteboardConfig: typeof whiteboard
@@ -927,6 +930,7 @@ export function parsePrivateConfig(privateConfig: NEMeetingPrivateConfig) {
       roomServer: string
     }
   } = {
+    meetingServerDomain,
     imPrivateConf: im,
     neRtcServerAddresses: rtc,
     whiteboardConfig: whiteboard,
