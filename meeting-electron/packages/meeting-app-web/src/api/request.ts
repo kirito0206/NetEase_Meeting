@@ -7,8 +7,49 @@ const axiosInstance = axios.create({
   baseURL: DOMAIN_SERVER,
 });
 
+let cachedPrivateConfig: {
+  meetingServerDomain?: string;
+  meeting?: {
+    serverUrl?: string;
+  };
+} | null = null;
+let privateConfigLoading: Promise<void> | null = null;
+
+function ensurePrivateConfigReady() {
+  if (!window.isElectronNative) {
+    return Promise.resolve();
+  }
+
+  if (cachedPrivateConfig) {
+    return Promise.resolve();
+  }
+
+  if (!privateConfigLoading) {
+    privateConfigLoading =
+      window.ipcRenderer
+        ?.invoke('getPrivateConfig')
+        .then((privateConfig) => {
+          cachedPrivateConfig = privateConfig;
+          const meetingServerUrl =
+            privateConfig?.meetingServerDomain ||
+            privateConfig?.meeting?.serverUrl;
+
+          if (meetingServerUrl) {
+            axiosInstance.defaults.baseURL = meetingServerUrl;
+          }
+        })
+        .catch((error) => {
+          console.log('getPrivateConfig error', error);
+        }) || Promise.resolve();
+  }
+
+  return privateConfigLoading;
+}
+
 axiosInstance.interceptors.request.use(
-  function (config) {
+  async function (config) {
+    await ensurePrivateConfigReady();
+
     config.headers = {
       ...config.headers,
       clientType: 'Web',
