@@ -1,0 +1,117 @@
+.favorite-box {
+    position: absolute;
+    bottom: 30px;
+    right: 10px;
+    user-select:none;
+    .favorite-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .favorite-count {
+      color: rgba(0, 0, 0, 0.5);
+      font-size: 12px;
+      text-align: center;
+      padding: 5px;
+    }
+    .favorite-btn {
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+      background-color: #337eff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      &:active {
+        transform: scale(0.9);
+      }
+    }
+    .favorite-btn-svg {
+      color: #fff;
+      line-height: 40px;
+      font-size: 22px;
+      width: 1em;
+      height: 1em;
+      vertical-align: -0.15em;
+      fill: currentColor;
+      overflow: hidden;
+    }
+    .pumping::after {
+      animation: pumping 100ms ease-in-out infinite
+    }
+  
+    @keyframes pumping {
+      50% {
+        transform: scale(0.95)
+      }
+    }
+  
+    .shape {
+      --size: 8px;
+      position: absolute;
+      top: calc(50% - var(--size));
+      left: calc(50% - var(--size));
+      width: calc(var(--size) * 2);
+      height: calc(var(--size) * 2);
+      animation: popup var(--d) cubic-bezier(.08,.56,.53,.98) forwards
+    }
+  
+    .square {
+      border-radius: 4px;
+      background-color: var(--c)
+    }
+  
+    .circle {
+      border-radius: 50%;
+      background-color: var(--c);
+    }
+  
+    .triangle {
+      width: 0;
+      height: 0;
+      background-color: transparent;
+      border-top: var(--size) solid transparent;
+      border-bottom: calc(var(--size) * 2) solid var(--c);
+      border-left: var(--size) solid transparent;
+      border-right: var(--size) solid transparent
+    }
+  
+    .heart {
+      --size: 6px;
+      background-color: var(--c)
+    }
+  
+    .heart::before,.heart::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: var(--c);
+      border-radius: 50%
+    }
+  
+    .heart::before {
+      left: -50%
+    }
+  
+    .heart::after {
+      top: -50%
+    }
+  
+    @keyframes popup {
+      0% {
+        opacity: 0
+      }
+  
+      60% {
+        opacity: 1
+      }
+  
+      100% {
+        opacity: 0;
+        transform: translate(var(--x),var(--y)) rotate(var(--r))
+      }
+    }  
+  }
