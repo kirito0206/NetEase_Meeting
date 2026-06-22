@@ -120,6 +120,10 @@
     },
     "extraResources": [
       {
+        "from": "../meeting-kit-electron/xkit_server_private.json",
+        "to": "xkit_server_private.json"
+      },
+      {
         "from": "assets/VC_redist.X64.exe",
         "to": "."
       }

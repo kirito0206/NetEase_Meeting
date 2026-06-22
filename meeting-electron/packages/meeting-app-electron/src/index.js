@@ -60,7 +60,6 @@ if (!fs.existsSync(userDataPath)) {
   }
 }
 
-const privateConfigPath = path.join(userDataPath, privateConfigFileName)
 // 定义日志目录名称
 const cacheDirectoryName = 'logs'
 
@@ -107,21 +106,24 @@ if (!fs.existsSync(logPath)) {
   fs.mkdirSync(logPath)
 }
 
-const innerPrivateConfigPath = path.join(__dirname, privateConfigFileName)
+function resolvePrivateConfigPath() {
+  const candidates = [
+    // Packaged app: electron-builder copies extraResources here.
+    path.join(process.resourcesPath, privateConfigFileName),
+    // Local development: keep the source config in meeting-kit-electron.
+    path.resolve(
+      __dirname,
+      '../../meeting-kit-electron',
+      privateConfigFileName
+    ),
+    // Backward compatibility with the previous app-local config location.
+    path.join(__dirname, privateConfigFileName),
+  ]
 
-getPrivateConfig()
-
-function getPrivateConfig() {
-  try {
-    // 如果存在配置文件
-    if (fs.existsSync(innerPrivateConfigPath)) {
-      console.log('存在私有化配置文件')
-      fs.copyFileSync(innerPrivateConfigPath, privateConfigPath)
-    }
-  } catch (error) {
-    console.log('copyPrivateConfig error', error)
-  }
+  return candidates.find((filePath) => fs.existsSync(filePath))
 }
+
+const privateConfigPath = resolvePrivateConfigPath()
 
 function dealLoginSuccess(url) {
   beforeMeetingWindow?.webContents.send('electron-login-success', url)
@@ -192,9 +194,9 @@ app.whenReady().then(() => {
       return privateConfig
     }
 
-    if (fs.existsSync(privateConfigPath)) {
+    if (privateConfigPath) {
       privateConfig = require(privateConfigPath)
-      console.log('privateConfig', privateConfig)
+      console.log('privateConfig', privateConfigPath, privateConfig)
     } else {
       privateConfig = null
     }
