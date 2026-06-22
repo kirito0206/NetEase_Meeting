@@ -1,0 +1,128 @@
+.bullet-screen-message-list.bullet-screen-message-list-hidden {
+    display: none;
+}
+.bullet-screen-message-list {
+    display: flex;
+    flex-direction: column-reverse;
+    position: absolute;
+    left: 10px;
+    top: 0;
+    bottom: 40px;
+    width: 350px;
+    overflow: hidden;
+    z-index: 999;
+    pointer-events:none;
+  
+  
+    .bullet-screen-message-item-wrapper {
+      display: flex;
+    }
+  
+    .bullet-screen-message-item {
+      border-radius: 4px;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 8px;
+      margin-top: 10px;
+      text-align: left;
+    }
+  
+    .bullet-screen-message-item-box {
+      font-size: 12px;
+      line-height: 18px;
+      text-align: left;
+      color: #ffffff;
+      word-break: break-all;
+      display: -webkit-box;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      word-wrap: break-word;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+  
+      .bullet-screen-message-item-nickname {
+        color: #f7c266;
+      }
+    }
+  }
+  
+
+  .bullet-screen-message-button {
+    width: 60px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.12);
+    box-sizing: border-box;
+    margin-top: 3px;
+    cursor: pointer;
+  
+    .button-circle-indicator {
+      background-color: #26BD71;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      margin: 4px;
+    }
+  
+    .button-text {
+      color: #26BD71;
+      font-size: 12px;
+      font-weight: 500;
+      margin: 0 0 0 10px;
+    }
+  
+    &.bullet-screen-message-button-close {
+      flex-direction: row-reverse;
+  
+      .button-circle-indicator {
+        background: #D8D8D8;
+      }
+  
+      .button-text {
+        color: #D8D8D8;
+        margin: 0 10px 0 0;
+      }
+    }
+  }
+
+  .bullet-screen-message-button {
+    width: 60px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.12);
+    box-sizing: border-box;
+    margin-top: 3px;
+    cursor: pointer;
+  
+    .button-circle-indicator {
+      background-color: #26BD71;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      margin: 4px;
+    }
+  
+    .button-text {
+      color: #26BD71;
+      font-size: 12px;
+      font-weight: 500;
+      margin: 0 0 0 10px;
+    }
+    &.bullet-screen-message-button-close {
+      flex-direction: row-reverse;
+
+      .button-circle-indicator {
+        background: #D8D8D8;
+      }
+  
+      .button-text {
+        color: #D8D8D8;
+        margin: 0 10px 0 0;
+      }
+    }
+  }

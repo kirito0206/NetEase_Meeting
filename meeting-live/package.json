@@ -1,0 +1,30 @@
+{
+  "private": true,
+  "author": "netease",
+  "scripts": {
+    "dev": "umi dev",
+    "build": "cross-env RUN_ENV=dev umi build",
+    "build:prod": "cross-env RUN_ENV=prod umi build",
+    "setup": "umi setup",
+    "start": "npm run dev"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^5.3.7",
+    "@yxim/nim-web-sdk": "^9.19.0",
+    "ahooks": "^3.7.8",
+    "antd": "5.18.0",
+    "axios": "^0.27.2",
+    "classnames": "^2.5.1",
+    "dayjs": "^1.11.11",
+    "react-string-replace": "^1.1.1",
+    "tcplayer.js": "^4.8.0",
+    "ts-md5": "^1.2.11",
+    "umi": "^4.3.28"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.33",
+    "@types/react-dom": "^18.0.11",
+    "cross-env": "^7.0.3",
+    "typescript": "^5.0.3"
+  }
+}

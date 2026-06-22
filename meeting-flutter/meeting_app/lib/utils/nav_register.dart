@@ -41,8 +41,26 @@ class RoutesRegister {
     RouterName.verifyMobileCheckCode: (context) => VerifyMobileCheckCodeRoute(),
     RouterName.entrance: (context) => EntranceRoute(),
     RouterName.homePage: (context) => HomePageRoute(isPipMode: false),
-    RouterName.meetCreate: (context) => MeetCreateRoute(),
-    RouterName.meetJoin: (context) => MeetJoinRoute(),
+    RouterName.meetCreate: (context) {
+      final args =
+      ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+      return MeetCreateRoute(
+        isTurnOnMyAudioWhenJoinMeetingEnabled:
+        args?['isTurnOnMyAudioWhenJoinMeetingEnabled'] ?? false,
+        isTurnOnMyVideoWhenJoinMeetingEnabled:
+        args?['isTurnOnMyVideoWhenJoinMeetingEnabled'] ?? false,
+      );
+    },
+    RouterName.meetJoin: (context) {
+      final args =
+      ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+      return MeetJoinRoute(
+        isTurnOnMyAudioWhenJoinMeetingEnabled:
+        args?['isTurnOnMyAudioWhenJoinMeetingEnabled'] ?? false,
+        isTurnOnMyVideoWhenJoinMeetingEnabled:
+        args?['isTurnOnMyVideoWhenJoinMeetingEnabled'] ?? false,
+      );
+    },
     RouterName.appSetting: (context) => AppSettingRoute(),
     RouterName.historyMeet: (context) => HistoryMeetingRoute(),
     RouterName.meetingSetting: (context) => MeetingSetting(),

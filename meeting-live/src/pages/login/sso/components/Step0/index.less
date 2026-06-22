@@ -1,0 +1,204 @@
+.root {
+    width: 100vw;
+    height: 100vh;
+  }
+  
+  .container {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  .content-h5 {
+    height: 100%;
+    background-color: #fff;
+    overflow: hidden;
+    padding: 0 28px;
+  }
+  
+  .content-pc {
+      position: absolute;
+      width: 375px;
+      height: 670px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      border-radius: 10px;
+      background-color: #fff;
+      box-shadow: 0 2px 9px rgba(37,38,94,.1);
+      color: #333;
+      box-sizing: border-box;
+      padding: 0 28px
+  }
+  
+  .title {
+    text-align: center;
+    font-weight: 500;
+    font-size: 24px;
+    margin-top: 100px;
+    line-height: 33px;
+    color: #333;
+  }
+
+  .desc {
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+    margin-top: 120px;
+    font-weight: 500;
+  }
+
+  .subDesc {
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+    margin-top: 20px;
+    font-weight: 500;
+    margin-bottom: 140px;
+  }
+
+  .nextBtn {
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    font-weight: 500;
+
+  }
+  
+
+  .returnIcon {
+    margin-top: 40px;
+    font-size: 20px;
+    color: #333;
+    display: block;
+    text-align: left;
+    cursor: pointer;
+  }
+
+
+  .logo {
+    display: block;
+    height: 120px;
+    margin: 80px auto 0;
+  }
+
+  .ssoInput, .passwordInput {
+    font-size: 16px;
+    height: 45px;
+    border-radius: 0px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #d9d9d9;
+    padding-left: 0px;
+    &:focus, &:hover, &:focus-within {
+      box-shadow: none;
+    }
+    .ssoPrefix {
+      color: #d8d8d8;
+      font-size: 24px;
+    }
+  }
+  .ssoInput {
+    margin-top: 40px;
+  }
+  .passwordInput {
+    margin-top: 20px;
+    margin-bottom: 60px;
+  }
+  
+  .ssoHelp {
+    display: block;
+    color: #337eff;
+    text-decoration: none;
+    font-size: 14px;
+    margin-top: 10px;
+    margin-bottom: 60px;
+  }
+
+  .ssoFooter {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ssoBoxWrapper {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 15px;
+    .ssoBox {
+      font-size: 28px;
+      padding: 10px;
+      width: 28px;
+      height: 28px;
+      text-align: center;
+      line-height: 28px;
+      background: #f5f6fa;
+      border-radius: 8px;
+      color: #337eff;
+      margin-bottom: 5px;
+    }
+    span {
+      font-weight: 500;
+      font-size: 12px;
+      color: #999;
+    }
+  }
+
+  .inputHelpWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    color: #ccc;
+    font-size: 12px;
+    margin-bottom: 120px;
+    a {
+      color: #337eff;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
+
+  .loginTitle {
+    text-align: left;
+    font-weight: 500;
+    font-size: 24px;
+    margin-top: 60px;
+    line-height: 33px;
+    color: #333;
+  }
+  .companyName {
+    position: absolute;
+    top: 30px;
+    left: 60px;
+    right: 60px;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    height: 44px;
+    line-height: 44px;
+    z-index: 0;
+  }
+
+  .otherLogin {
+    &:global(.ant-divider) {
+      margin-top: 60px;
+    }
+    span {
+      color: #666;
+      font-size: 12px;
+    }
+  }
+  
+  .footerAgreement {
+    margin-top: 20px;
+  }
+
+  .footerAgreementMargin {
+    margin-top: 160px;
+  }

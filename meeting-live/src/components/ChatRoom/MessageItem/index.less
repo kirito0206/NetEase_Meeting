@@ -1,0 +1,31 @@
+.message-item-box {
+
+  font-size: 12px;
+  padding: 10px 20px;
+  .message-item-name {
+    color: rgba(0, 0, 0, 0.5);
+    height: 20px;
+    line-height: 20px;
+
+  }
+  .message-item-content-wrapper {
+    display: flex;
+  }
+  .message-item-content {
+    display: inline-block;
+    background-color: #F2F7FF;
+    border-radius: 4px;
+    padding: 6px 8px;
+    max-width: 300px;
+    font-size: 12px;
+    word-break: break-all;
+  }
+  &.is-me {
+    .message-item-name {
+      text-align: right;
+    }
+    .message-item-content-wrapper {
+      justify-content: flex-end;
+    }
+  }
+}

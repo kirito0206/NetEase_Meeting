@@ -26,6 +26,15 @@ import '../utils/dialog_utils.dart';
 import '../utils/privacy_util.dart';
 
 class MeetJoinRoute extends StatefulWidget {
+  final bool isTurnOnMyAudioWhenJoinMeetingEnabled;
+  final bool isTurnOnMyVideoWhenJoinMeetingEnabled;
+
+  const MeetJoinRoute({
+    super.key,
+    required this.isTurnOnMyAudioWhenJoinMeetingEnabled,
+    required this.isTurnOnMyVideoWhenJoinMeetingEnabled,
+  });
+
   @override
   State<StatefulWidget> createState() {
     return _MeetJoinRouteState();
@@ -62,13 +71,8 @@ class _MeetJoinRouteState extends AppBaseState<MeetJoinRoute>
     GlobalState.deepLinkMeetingNum = null;
     _meetingNumController = TextEditingController(text: meetingNum);
     _meetingNumController.addListener(_onMeetingNumChanged);
-    Future.wait([
-      settingsService.isTurnOnMyVideoWhenJoinMeetingEnabled(),
-      settingsService.isTurnOnMyAudioWhenJoinMeetingEnabled(),
-    ]).then((values) {
-      openCamera.value = values[0];
-      openMicrophone.value = values[1];
-    });
+    openCamera.value = widget.isTurnOnMyVideoWhenJoinMeetingEnabled;
+    openMicrophone.value = widget.isTurnOnMyAudioWhenJoinMeetingEnabled;
 
     String? nickname;
     if (meetingNum != null) {

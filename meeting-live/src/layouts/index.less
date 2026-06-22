@@ -1,0 +1,71 @@
+body {
+    font-family: PingFang SC;
+    background-color: #F2F3F5;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+@media screen and (max-width: 800px) {
+  body {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+  }
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+    border-radius: 4px;
+    overflow: overlay;
+  }
+  
+  ::-webkit-scrollbar-button {
+    width: 4px;
+    height: 0;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: 0 0;
+  }
+  ::-webkit-scrollbar-thumb {
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    width: 6px;
+  }
+  
+  ::-webkit-scrollbar-track-piece {
+    background-color: transparent;
+    -webkit-border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:vertical {
+    height: 4px;
+    background-color: #cdcfd7;
+    -webkit-border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:horizontal {
+    width: 4px;
+    background-color: #cdcfd7;
+    -webkit-border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:vertical:hover,
+  ::-webkit-scrollbar-thumb:horizontal:hover {
+    background-color: #cdcfd7;
+  }

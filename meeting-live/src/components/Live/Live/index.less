@@ -1,0 +1,100 @@
+.pc-live-container {
+    width: calc(100vw - 460px);
+    position: absolute;
+    left: 40px;
+    top: 40px;
+    border-radius: 8px;
+    box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08),0 3px 6px -4px rgba(0, 0, 0, 0.12),0 9px 28px 8px rgba(0, 0, 0, 0.05);
+    background: #FFF;
+    overflow: hidden;
+    min-width: 980px;
+    
+    .header {
+        height: 78px;
+        display: flex;
+        align-items: center;
+        padding-left: 20px;
+        .title {
+            font-size: 32px;
+            font-weight: 500;
+            color: #333333;
+        }
+        .living-status {
+            display: inline-block;
+            font-size: 14px;
+            color: #ffffff;
+            vertical-align: text-bottom;
+            margin: 0 0 0 12px;
+            background: #f24957 url("../../../assets/shooting@2x.png")
+              no-repeat 18%/20px 20px;
+            padding: 0 20px 0 40px;
+            border-radius: 4px;
+            height: 32px;
+            line-height: 32px;
+          }
+    }
+    .play-wrapper {
+        width: 100%;
+        height: calc(100% - 78px);
+        position: relative;
+        :global(.vjs-poster) {
+            background-size: cover;
+        }
+    }
+    .play-cover {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        .play-cover-content {
+            background-color: rgba(68,68,90,0.7);
+            padding: 8px 30px;
+            color: #fff;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 8px;
+        }
+    }
+    .play-content {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+    }
+}
+
+
+.h5-live-container {
+    width: 100vw;
+    background: #FFF;
+    position: relative;
+    
+    .play-wrapper {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        :global(.vjs-poster) {
+            background-size: cover;
+        }
+    }
+    .play-cover {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        .play-cover-content {
+            background-color: rgba(68,68,90,0.7);
+            padding: 8px 30px;
+            color: #fff;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 8px;
+        }
+    }
+    .play-content {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+    }
+}

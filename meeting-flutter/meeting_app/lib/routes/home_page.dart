@@ -630,12 +630,11 @@ class _HomePageRouteState extends PlatformAwareLifecycleBaseState<HomePageRoute>
   }
 
   void _onCreateMeeting() {
-    // InMeetingMoreMenuUtil.showInMeetingDialog(NavUtils.navigatorKey.currentState!.context);
-    NavUtils.pushNamed(context, RouterName.meetCreate);
+    NavUtils.toMeetingCreate(context);
   }
 
   void _onJoinMeeting() {
-    NavUtils.pushNamed(context, RouterName.meetJoin);
+    NavUtils.toMeetingJoin(context);
   }
 
   void _onSetting() {

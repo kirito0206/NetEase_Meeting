@@ -1,0 +1,131 @@
+.pc-chatroom-container, .h5-chatroom-container {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+    .header {
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        color: #333333;
+        font-size: 14px;
+        border-bottom: 1px solid #F0F0F0;
+    }
+    .content {
+        flex: 1;
+        box-sizing: border-box;
+        position: relative;
+        .message-list {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            overflow-y: scroll;
+
+            .message-item-time {
+                text-align: center;
+                height: 12px;
+                color: #999;
+                margin-top: 5px;
+            }
+        }
+        .new-msg {
+            padding: 4px 8px;
+            background-color: #337EFF;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            color: #FFF;
+            cursor: pointer;
+        }
+    }
+    .footer {
+        border-top: 1px solid #F0F0F0;
+        .input-wrapper {
+            height: 56px;
+            display: flex;
+            align-items: center;
+            box-sizing: border-box;
+            padding: 12px;
+        }
+
+        .input {
+            border-radius: 4px;
+            height: 36px;
+            background-color: #FAFAFB;
+            .emoji-icon {
+                font-size: 22px;
+                color: #666666;
+            }
+        }
+        .send-btn {
+            height: 36px;
+            width: 60px;
+            margin-left: 8px;
+            border-radius: 4px;
+            &::disabled {
+                background: #87bbff;
+                color: #fff;
+              }
+        }
+    }
+}
+
+.pc-chatroom-container {
+    position: fixed;
+    top: 40px;
+    right: 40px;
+    width: 360px;
+    border-radius: 8px;
+    box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08),0 3px 6px -4px rgba(0, 0, 0, 0.12),0 9px 28px 8px rgba(0, 0, 0, 0.05);
+    background: #FFF;
+    z-index: 999;
+}
+
+.h5-chatroom-container {
+    background-color: #fff;
+    width: 100vw;
+    flex: 1;
+}
+
+.login-modal {
+    :global {
+        .ant-modal-content {
+            padding: 20px 0 0 0;
+            overflow: hidden;
+            .ant-modal-confirm-title {
+                text-align: center;
+            }
+            .ant-modal-confirm-btns {
+                display: flex;
+                flex-direction: row-reverse;
+            }
+            .ant-btn {
+                flex: 1;
+                border-radius: 0;
+                border: none;
+                border-top: 1px solid #F0F0F0;
+                box-sizing: border-box;
+                height: 40px;
+                &:hover {
+                    background-color: #fff;
+                    border-color: #F0F0F0;
+                    color: rgba(0, 0, 0, 0.88);
+                }
+            }
+            .ant-modal-confirm-btns .ant-btn+.ant-btn  {
+                margin-inline-start: 0;
+                border-top: 1px solid #F0F0F0;
+                border-right: 1px solid #F0F0F0;
+                box-sizing: border-box;
+                background-color: #fff;
+                color: #337EFF;
+            }
+        }
+
+
+
+    }
+}

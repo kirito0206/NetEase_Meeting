@@ -121,4 +121,56 @@ class NavUtils {
     NavUtils.pushNamedAndRemoveUntil(context, RouterName.entrance,
         rootNavigator: rootNavigator);
   }
+
+  static Future<void> toMeetingCreate(BuildContext context) async {
+    final settingsService = NEMeetingKit.instance.getSettingsService();
+    final isAudioOn =
+    await settingsService.isTurnOnMyAudioWhenJoinMeetingEnabled();
+    final isVideoOn =
+    await settingsService.isTurnOnMyVideoWhenJoinMeetingEnabled();
+    NavUtils.pushNamed(
+      context,
+      RouterName.meetCreate,
+      arguments: {
+        'isTurnOnMyAudioWhenJoinMeetingEnabled': isAudioOn,
+        'isTurnOnMyVideoWhenJoinMeetingEnabled': isVideoOn,
+      },
+    );
+  }
+
+  static Future<void> toMeetingJoin(BuildContext context) async {
+    final settingsService = NEMeetingKit.instance.getSettingsService();
+    final isAudioOn =
+    await settingsService.isTurnOnMyAudioWhenJoinMeetingEnabled();
+    final isVideoOn =
+    await settingsService.isTurnOnMyVideoWhenJoinMeetingEnabled();
+    NavUtils.pushNamed(
+      context,
+      RouterName.meetJoin,
+      arguments: {
+        'isTurnOnMyAudioWhenJoinMeetingEnabled': isAudioOn,
+        'isTurnOnMyVideoWhenJoinMeetingEnabled': isVideoOn,
+      },
+    );
+  }
+
+  static Future<void> toMeetingJoinAndRemoveUntil(
+      BuildContext context, {
+        String? utilRouteName,
+      }) async {
+    final settingsService = NEMeetingKit.instance.getSettingsService();
+    final isAudioOn =
+    await settingsService.isTurnOnMyAudioWhenJoinMeetingEnabled();
+    final isVideoOn =
+    await settingsService.isTurnOnMyVideoWhenJoinMeetingEnabled();
+    NavUtils.pushNamedAndRemoveUntil(
+      context,
+      RouterName.meetJoin,
+      utilRouteName: utilRouteName,
+      arguments: {
+        'isTurnOnMyAudioWhenJoinMeetingEnabled': isAudioOn,
+        'isTurnOnMyVideoWhenJoinMeetingEnabled': isVideoOn,
+      },
+    );
+  }
 }

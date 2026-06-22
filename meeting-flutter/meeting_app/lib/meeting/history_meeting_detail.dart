@@ -396,16 +396,18 @@ class _HistoryMeetingDetailRouteState
   }
 
   Future navigateToMeetingRecordPage() {
-    var uri = Uri.parse(Servers().cloudRecordUrl);
-    uri = uri.replace(queryParameters: {
-      'id': '${item.meetingId}',
-      'token': '${AuthManager().accountToken}',
-      'user': '${AuthManager().accountId}',
-      'meetingAppKey': '${AuthManager().appKey}',
-    });
+    // var uri = Uri.parse(Servers().cloudRecordUrl);
+    // uri = uri.replace(queryParameters: {
+    //   'id': '${item.meetingId}',
+    //   'token': '${AuthManager().accountToken}',
+    //   'user': '${AuthManager().accountId}',
+    //   'meetingAppKey': '${AuthManager().appKey}',
+    // });
+    var url =
+        '${Servers().cloudRecordUrl}?id=${item.meetingId}&token=${AuthManager().accountToken}&user=${AuthManager().accountId}&meetingAppKey=${AuthManager().appKey}';
     return NavUtils.pushNamed(context, RouterName.webview,
         arguments: WebViewArguments(
-            uri.toString(), getAppLocalizations().historyMeetingCloudRecord));
+            url, getAppLocalizations().historyMeetingCloudRecord));
   }
 
   Future<bool> isNetworkConnect() async {
