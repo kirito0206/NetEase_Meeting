@@ -8,48 +8,37 @@
 
 ## 开发与构建
 
-安装依赖并启动开发服务：
+安装依赖并启动本地预览服务。预览服务使用线上 API 和入会地址：
 
 ```bash
 yarn
 yarn start
 ```
 
-按环境构建：
+构建线上版本：
 
 ```bash
-# 测试环境
-yarn build:dev
-
-# 生产环境
-yarn build:prod
+yarn build
 ```
 
 构建产物默认输出到 `dist/`。部署前请确认 `.umirc.ts` 中的 API 地址、网页跳转地址和静态资源发布地址都已替换为目标环境的值。
 
 ## 当前默认值
 
-以下值与当前 [`.umirc.ts`](.umirc.ts)、Logo 组件和邀请页代码保持一致：
+以下值与当前 [`.umirc.ts`](.umirc.ts)、Logo 组件和邀请页代码保持一致。项目当前只保留线上配置：
 
 | 配置项 | 默认值 |
 | --- | --- |
-| `RUN_ENV` 未设置时 | `development` |
 | 软件名称 | `网易会议` |
-| 开发环境 API 地址 | `https://roomkit-dev.netease.im/` |
-| 测试环境 API 地址 | `https://roomkit-dev.netease.im/` |
-| 生产环境 API 地址 | `https://roomkit.netease.im/` |
-| 开发/测试网页版入会 | `https://yiyong-qa.netease.im/yiyong-static/statics/ne-meeting-test/test/#/` |
-| 生产网页版入会 | `https://yiyong-qa.netease.im/yiyong-static/statics/ne-meeting-test/prod/#/` |
-| 开发/测试 H5 入会 | `https://yiyong-qa.netease.im/yiyong-static/statics/ne-meeting-test/test/#/h5` |
-| 生产 H5 入会 | `https://yiyong-qa.netease.im/yiyong-static/statics/ne-meeting-test/h5-prod/#/` |
-| 开发环境 `publicPath` | `/` |
-| 测试环境 `publicPath` | `./` |
-| 生产环境 `publicPath` | `https://yiyong-static.nosdn.127.net/meeting-web-invite-page-prod/` |
+| 线上 API 地址 | `https://roomkit.netease.im/` |
+| 线上网页版入会 | `https://yiyong-qa.netease.im/yiyong-static/statics/ne-meeting-test/prod/#/` |
+| 线上 H5 入会 | `https://yiyong-qa.netease.im/yiyong-static/statics/ne-meeting-test/h5-prod/#/` |
+| 线上 `publicPath` | `https://yiyong-static.nosdn.127.net/meeting-web-invite-page-prod/` |
 | APP 入会协议 | `nemeeting://meeting.netease.im/` |
 | APP 下载地址 | `https://meeting.163.com/` |
 | 浏览器 favicon | `https://yx-web-nosdn.netease.im/quickhtml/assets/yunxin/node-website/icon@128x128.png` |
 
-`yarn start` 未设置 `RUN_ENV` 时使用开发环境；`yarn build:dev` 使用测试环境；`yarn build:prod` 使用生产环境。会议邀请码没有默认值，必须通过 URL 的 `meeting` 参数传入，例如 `/invite?meeting=123456`。
+`yarn start` 仅用于本地预览，但请求仍发送到线上服务；`yarn build` 构建线上版本。会议邀请码没有默认值，必须通过 URL 的 `meeting` 参数传入，例如 `/invite?meeting=123456`。
 
 ## 替换软件名称和图标
 
@@ -99,20 +88,11 @@ links: [
 
 ### 网页版和 H5 入会地址
 
-地址集中配置在 [`.umirc.ts`](.umirc.ts) 的 `webJumpUrl` 和 `h5JumpUrl`。每个环境分别配置一个地址：
+地址集中配置在 [`.umirc.ts`](.umirc.ts) 的 `webJumpUrl` 和 `h5JumpUrl`。项目当前只配置线上地址：
 
 ```ts
-const webJumpUrl = {
-  development: 'https://example.com/web/#/',
-  test: 'https://test.example.com/web/#/',
-  production: 'https://example.com/web/#/',
-}[env]
-
-const h5JumpUrl = {
-  development: 'https://example.com/h5/#/',
-  test: 'https://test.example.com/h5/#/',
-  production: 'https://example.com/h5/#/',
-}[env]
+const webJumpUrl = 'https://example.com/web/#/'
+const h5JumpUrl = 'https://example.com/h5/#/'
 ```
 
 点击“网页版入会”或移动端“加入会议”时，页面会向目标地址追加以下参数：
@@ -151,22 +131,17 @@ window.location.href = 'https://meeting.163.com/'
 
 ## API 和环境配置
 
-`.umirc.ts` 中的 `baseUrl` 是邀请详情、短信验证和账号注销接口的服务地址：
+`.umirc.ts` 中的 `baseUrl` 是线上邀请详情、短信验证和账号注销接口的服务地址：
 
 ```ts
-const baseUrl = {
-  development: 'https://api-dev.example.com/',
-  test: 'https://api-test.example.com/',
-  production: 'https://api.example.com/',
-}[env]
+const baseUrl = 'https://api.example.com/'
 ```
 
-构建时通过 `RUN_ENV` 选择环境：
+项目不再通过 `RUN_ENV` 切换环境，所有构建均使用线上配置：
 
 ```bash
-RUN_ENV=development yarn start
-RUN_ENV=test yarn build:dev
-RUN_ENV=production yarn build:prod
+yarn start
+yarn build
 ```
 
 邀请页从 URL 查询参数 `meeting` 读取会议邀请码，然后请求：
@@ -179,7 +154,7 @@ GET <baseUrl>/scene/meeting/v1/invite/info/<meeting>
 
 ## 发布前检查
 
-- 生产环境不要继续使用测试/QA 域名，尤其是 `webJumpUrl`、`h5JumpUrl` 和 `publicPath`。
+- 确认线上 API、`webJumpUrl`、`h5JumpUrl` 和 `publicPath` 均为正式发布地址，不要误填测试/QA 域名。
 - 不要把 AppKey、用户令牌、短信验证码或其他凭据写入源码或提交到 URL。当前注销流程会从 URL 读取 `id`、`t`、手机号和验证码，接入生产前应评估并改为短期一次性授权码或内存传递。
 - `doSendVerifyCode` 当前把手机号放在 GET URL 路径中，生产后端应做好限流、来源校验和日志脱敏。
 - 替换 Logo、背景和字体等资源前确认拥有相应的商标、版权和再分发授权。
