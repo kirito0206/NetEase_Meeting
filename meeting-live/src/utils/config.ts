@@ -5,7 +5,7 @@ type CustomConf = {
   chatRoomId: string
 }
 
-const env = process.env.RUN_ENV ?? 'dev'
+const env = process.env.RUN_ENV ?? 'prod'
 
 function getConfig(customConf?: CustomConf) {
   const dev = {
@@ -30,7 +30,7 @@ function getConfig(customConf?: CustomConf) {
     {
       dev,
       prod,
-    }[env] ?? dev
+    }[env] ?? prod
   )
 }
 

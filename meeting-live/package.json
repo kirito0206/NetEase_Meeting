@@ -3,7 +3,7 @@
   "author": "netease",
   "scripts": {
     "dev": "umi dev",
-    "build": "cross-env RUN_ENV=dev umi build",
+    "build": "cross-env RUN_ENV=prod umi build",
     "build:prod": "cross-env RUN_ENV=prod umi build",
     "setup": "umi setup",
     "start": "npm run dev"
